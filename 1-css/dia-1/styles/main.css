@@ -1,0 +1,30 @@
+:root {
+    --color-primario: #123fad;
+    --color-secundario: #ff00d0;
+    --color-bg: #fff;
+    --color-fg: #333;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+}
+
+nav a {
+    color: var(--color-fg);
+}
+
+.hero img {
+    width: 50dvw;
+}
+
+.seccion img {
+    width: 75%;
+}
+
+.main-footer {
+    background-color: var(--color-primario);
+    color: var(--color-bg);
+
+    height: 10dvh;
+}
