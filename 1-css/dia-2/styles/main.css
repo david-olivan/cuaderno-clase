@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+html {
+    box-sizing: border-box;
+
+}
+
+* {
+    box-sizing: inherit;  
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-primario: #123fad;
+    --color-secundario: #ff00d0;
+    --color-bg: #fff;
+    --color-fg: #333;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+}
+
+nav a {
+    color: var(--color-fg);
+}
+
+.hero h1 {
+    color: rgb(197, 186, 64);
+    font-family: Monoton, sans-serif;
+}
+
+header {
+    border-bottom: 1px solid var(--color-primario);
+}
+
+.hero img {
+    width: 50dvw;
+}
+
+.seccion img {
+    width: 75%;
+}
+
+.main-footer {
+    background-color: var(--color-primario);
+    color: var(--color-bg);
+
+    text-align: center;
+    padding-top: 7dvh;
+    padding-bottom: 5dvh;
+}
+
+.navegacion {
+    background-color: var(--color-fg);
+    padding: 25px;
+    transition: all .3s ease-in-out;
+
+    a {
+        color: var(--color-bg);
+        text-decoration-color: transparent;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+
+            text-decoration-color: var(--color-bg);           
+        }
+    }
+}
+
+.navegacion:hover {
+    background-color: var(--color-secundario);
+}
+
+.hero {
+    text-align: center;
+    margin: 1.5rem 0;
+
+    img {
+        width: 25dvw;
+    }
+}
+
+main {
+    padding: 0 20dvw;
+    margin: 1.5rem 0;
+}
+
+.seccion {
+    margin: 1.5rem 0;
+
+    img {
+        width: 50%;
+    }
+}
