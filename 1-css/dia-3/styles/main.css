@@ -1,0 +1,92 @@
+:root {
+    --negro-suave: #333;
+    --blanco-suave: #dfdfdf;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*** CABECERA ****/
+.main-header {
+    width: 100%;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20dvh;
+    padding: 0 2rem;
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        gap: 1rem;
+    }
+
+    a {
+        color: var(--negro-suave);
+        text-decoration-color: transparent;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            color: #3737ff;
+            text-decoration-color: #3737ff;
+        }
+    }
+}
+
+.hero {
+    height: 80dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background-image: url("../assets/images/buho3.jpg");
+    background-position: center top;
+
+    img {
+        height: 150px;
+    }
+}
+
+/*** CONTENIDO ****/
+main {
+    width: 65dvw;
+    background-color: red;
+}
+
+.seccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 30%;
+    }
+}
+
+/*** PIE DE PÁGINA ****/
+.main-footer {
+    background-color: green;
+    width: 100%;
+    height: 17dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
