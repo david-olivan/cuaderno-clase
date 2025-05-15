@@ -21,22 +21,40 @@
                     <li><a href="views/contacto.html">Contacto</a></li>
                 </ul>
             </nav>
-
             <div class="hero">
                 <h1>BattleOwl</h1>
                 <div>
-                    <button>Cómprate uno</button>
-                    <button>Cómprate uno</button>
+                    <a href="#contenido" class="cta">&darr;</a>
                 </div>
             </div>
         </header>
 
         <!--CONTENIDO PRINCIPAL SIEMPRE HIJO DE BODY-->
-        <main>
+        <main id="contenido">
             <section class="seccion">
                 <h2>Todos tus búhos aquí</h2>
                 <p>Lorem ipsum <a href="">dolor</a> sit amet, consectetur adipisicing elit. Quisquam, impedit. Sunt neque quibusdam unde. Quos, cupiditate nihil. Vitae dolorum, atque magni rem suscipit iste tempora! Pariatur nulla sed inventore ipsa!</p>
                 <h3>Subtítulo</h3>
+                <style>
+                    .flex-centrado {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                    }
+                    .flex-columna {
+                        flex-direction: column;
+                    }
+                </style>
+                <ul
+                    class="
+                    flex-centrado flex-columna
+                    "
+                    style="background-color: aqua;"
+                >
+                    <li style="background-color: gray;">itemasdfasdfasdf</li>
+                    <li>tiemdfdfasfasdfasdfdfasdf</li>
+                    <li>item</li>
+                </ul>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum assumenda mollitia praesentium impedit. Tenetur nam quasi consequatur dolorum enim, quod quam laudantium facilis rem aut. Sapiente, debitis dicta? Suscipit, cum?</p>
             </section>
             <section class="seccion">

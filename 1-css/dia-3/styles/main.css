@@ -5,6 +5,7 @@
 
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *, *:before, *:after {
@@ -17,6 +18,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    min-height: 100dvh;
 }
 
 /*** CABECERA ****/
@@ -56,18 +59,42 @@ body {
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    background-image: url("../assets/images/buho3.jpg");
-    background-position: center top;
+
+    background: 
+        linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgb(255, 255, 255)),
+        url("../assets/images/hedwif.gif") no-repeat center top;
+        background-size: cover;
+
+    h1 {
+        color: #dfdfdf;
+        text-shadow: 0 0 5px var(--negro-suave);
+        font-size: 4rem;
+    }
 
     img {
         height: 150px;
     }
 }
 
+.cta {
+    border: 0;
+    background-color: #dfdfdf;
+    padding: .5rem .9rem .6rem;
+    font-size: 1.2rem;
+    border-radius: 5000px;
+    color: #333;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        color: #dfdfdf;
+        background-color: #3737ff;
+    }
+}
+
 /*** CONTENIDO ****/
 main {
     width: 65dvw;
-    background-color: red;
 }
 
 .seccion {
