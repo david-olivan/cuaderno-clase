@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+</head>
+<body>
+
+    <script>
+        const alumno = {
+            nombre: "Fran",
+            edad: 18,
+            estaConfuso: true,
+            asignaturas: [
+                "HTML", "CSS" , "JS"
+            ],
+            sentadoCon: {
+                izquierda: "Ana",
+                derecha: "Pared"
+            }
+        }
+
+        const consultaUsuario = "estaConfuso"
+
+        console.log(alumno[consultaUsuario])
+
+        // Explicarle las cosas
+        alumno.estaConfuso = false
+
+        console.log(alumno[consultaUsuario])
+
+    </script>    
+</body>
+</html>
