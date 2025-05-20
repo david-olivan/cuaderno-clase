@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras de Control</title>
+</head>
+<body>
+    
+    <script>
+        const notasDeFran = 9.75
+        const esFranMajo = false
+
+        if (notasDeFran >= 9) {
+            if (esFranMajo) {
+                console.log("Matrícula de honor")
+            } else {
+                console.log("Genial, tienes un sobresaliente")
+            }
+        } else if (notasDeFran >= 7) {
+            console.log("Pues tienes un notable")
+        } else if (notasDeFran >= 5) {
+            console.log("Enhorabuena has aprobado")
+        } else {
+            console.log("Lo siento, hay que estudiar más")
+        }
+    </script>
+    <script>
+        const x = Number(prompt("X: ")), y = Number(prompt("Y: "))
+        const operacion = prompt("Qué quieres hacer (suma, resta)")
+
+        if (operacion == "suma") {
+            alert(x + y)
+        } else if (operacion == "resta") {
+            alert(x - y)
+        }
+    </script>
+</body>
+</html>

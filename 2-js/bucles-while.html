@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucles: While</title>
+</head>
+<body>
+    
+    <script>
+        // let enFuncionamiento = true
+        // let contador = 0
+
+        // while (contador < 9) {
+        //     console.log("Hola, mundo")
+        //     enFuncionamiento = false
+        //     contador++
+        // }
+
+        let userInput
+        
+        do {
+            console.log("Ha habido un intento")
+            userInput = Number(prompt("Dame un número entre 0 y 10"))
+        } while (userInput < 0 || userInput > 10)
+    </script>
+</body>
+</html>

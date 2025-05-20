@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucles</title>
+</head>
+<body>
+    
+    <script>
+        const alumnos = ["Fran", "Néstor", "Elena", "Eduardo", "Ana", "Jorge", "Eymili"]
+
+        // for (let i = 0; i < alumnos.length; i++) {
+        //     if (alumnos[i][0] !== "A") {
+        //         continue
+        //     }
+        //     console.log(alumnos[i])
+        // }
+
+        for (let i = 0; i < alumnos.length; i++) {
+            if (alumnos[i] === "Dani") {
+                console.log("He encontrado a Dani, ya no necesito buscar")
+                break
+            }
+
+            console.log(alumnos[i])
+        }
+    </script>
+</body>
+</html>
