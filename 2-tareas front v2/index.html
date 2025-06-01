@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OwlTasks - Mi gestor de tareas</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="shortcut icon" href="assets/icon_owl.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="tituloPrincipal">OwlTasks</h1>
+    </header>
+
+    <!--
+        TODO: rehacer el módulo de creación de tareas de manera que al
+        hacer click en nueva tarea, me muestre los campos a rellenar.
+    -->
+    <section id="controles">
+        <input type="text" id="nombreTarea">
+        <button onclick="crearTarea()">Crear Tarea</button>
+
+        <input type="text" id="eliminarTarea">
+        <button onclick="eliminarTarea()">Eliminar tarea</button>
+    </section>
+
+    <!--
+        TODO: mejorar la muestra de tareas, añadiendo botones individuales
+        para editar y borrar tareas.
+    -->
+    <main id="app"></main>
+
+    <footer>
+        <p>2025 &copy; OwlTasks</p>
+    </footer>
+
+    <script src="src/app.js"></script>
+</body>
+</html>
