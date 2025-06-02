@@ -15,8 +15,7 @@ function cargarTareas() {
     let tareas = localStorage.getItem("tareas")
     
     if (!tareas) {
-        tareas = {
-            "tareas": [
+        tareas = [
                 {
                     "nombre": "Tarea de ejemplo",
                     "prioridad": 1,
@@ -28,7 +27,6 @@ function cargarTareas() {
                     "estado": "pendiente"
                 }
             ]
-        }
         guardarTareas(tareas)
     }
 

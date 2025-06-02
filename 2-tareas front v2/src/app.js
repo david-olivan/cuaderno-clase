@@ -29,12 +29,10 @@ function renderApp() {
 // }
 
 
-function formatearTareas(localDB) {
+function formatearTareas(tareas) {
     const tareasFormateadas = []
 
-    console.log(localDB)
-
-    localDB.tareas.forEach((tarea) => {
+    tareas.forEach((tarea) => {
         tareasFormateadas.push(`<li>${tarea.nombre}</li>`)
     })
 
