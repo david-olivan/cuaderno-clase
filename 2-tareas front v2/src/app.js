@@ -5,32 +5,6 @@
 // TODO: desacoplar funciones comunes
 
 
-/**
- * Guarda una lista de tareas en localStorage
- * @param {string[]} lista lista de tareas para guardar
- */
-function guardarTareas(lista) {
-    localStorage.setItem("tareas", lista)
-}
-
-
-/**
- * Devuelve la lista de tareas guardadas en localStorage
- * @returns {string[]}
- */
-function cargarTareas() {
-    let tareas = localStorage.getItem("tareas")
-    console.log(typeof tareas)
-    
-    if (!tareas) {
-        tareas = []
-        guardarTareas(tareas)
-    }
-
-    return tareas
-}
-
-
 function renderApp() {
     const myApp = document.getElementById("app")    
 
@@ -55,11 +29,13 @@ function renderApp() {
 // }
 
 
-function formatearTareas(listaDeTareas) {
+function formatearTareas(localDB) {
     const tareasFormateadas = []
 
-    listaDeTareas.forEach((tarea) => {
-        tareasFormateadas.push(`<li>${tarea}</li>`)
+    console.log(localDB)
+
+    localDB.tareas.forEach((tarea) => {
+        tareasFormateadas.push(`<li>${tarea.nombre}</li>`)
     })
 
     return tareasFormateadas.join("")
