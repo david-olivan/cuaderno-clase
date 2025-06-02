@@ -4,10 +4,6 @@ body {
     justify-content: space-between;
 }
 
-#app {
-    min-height: 75dvh;
-    background-color: #1e80d5;
-}
 
 .tachado {
     text-decoration: line-through;
