@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="assets/icon_owl.png" type="image/x-icon">
 </head>
 <body>
-    <header>
+    <header class="header-main">
         <h1 id="tituloPrincipal">OwlTasks</h1>
     </header>
 
@@ -17,20 +17,20 @@
         TODO: rehacer el módulo de creación de tareas de manera que al
         hacer click en nueva tarea, me muestre los campos a rellenar.
     -->
-    <section id="controles">
-        <input type="text" id="nombreTarea">
-        <button onclick="crearTarea()">Crear Tarea</button>
-
-        <input type="text" id="eliminarTarea">
-        <button onclick="eliminarTarea()">Eliminar tarea</button>
-    </section>
-
     <!--
         TODO: mejorar la muestra de tareas, añadiendo botones individuales
         para editar y borrar tareas.
     -->
     <main>
         <h2>Bienvenid@ a la app</h2>
+
+        <section id="controles">
+            <input type="text" id="nombreTarea">
+            <button onclick="crearTarea()">Crear Tarea</button>
+
+            <input type="text" id="eliminarTarea">
+            <button onclick="eliminarTarea()">Eliminar tarea</button>
+        </section>
 
         <table class="tablaTareas">
             <thead>
@@ -52,7 +52,7 @@
         </table>
     </main>
 
-    <footer>
+    <footer class="footer-main">
         <p>2025 &copy; OwlTasks</p>
     </footer>
 

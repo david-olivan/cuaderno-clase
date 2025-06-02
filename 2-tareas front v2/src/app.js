@@ -7,14 +7,20 @@
 function renderApp() {
     const tablaTareas = document.getElementById("tablaTareas")
     tablaTareas.innerHTML = ""
+    const prioridades = ["Normal", "Importante", "SuperUrgente"]
+    const estados = {
+        "pendiente": "Pendiente",
+        "progreso": "En progreso",
+        "completa": "Tarea completada"
+    }
 
     cargarTareas().forEach((tarea, index) => {
         tablaTareas.innerHTML += `
                 <tr>
                     <td>${index + 1}</td>
                     <td>${tarea.nombre}</td>
-                    <td>Importante</td>
-                    <td>En progreso</td>
+                    <td>${prioridades[tarea.prioridad - 1]}</td>
+                    <td>${estados[tarea.estado]}</td>
                 </tr>
         `
     })
