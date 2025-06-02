@@ -5,6 +5,47 @@ body {
 }
 
 
+.tablaTareas {
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 20%;
+
+    th, td {
+        padding: .25rem .3rem;
+    }
+
+    th {
+        background-color: #143;
+        color: white;
+    }
+
+    td {
+        text-overflow: ellipsis;
+    }
+
+    tr {
+        border-bottom: 1px solid #333;
+    }
+
+    tr:last-child {
+        border: none;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #d3d3d3;
+    }
+
+    tbody tr:hover {
+        background-color: #a3a3a3;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 100%;
+    }
+}
+
 .tachado {
     text-decoration: line-through;
 }
