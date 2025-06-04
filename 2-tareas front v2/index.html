@@ -22,23 +22,48 @@
         para editar y borrar tareas.
     -->
     <main>
-        <h2>Bienvenid@ a la app</h2>
+        <h2 class="experimentosDavs">Bienvenid@ a la app</h2>
 
-        <section id="controles">
-            <input type="text" id="nombreTarea">
-            <button onclick="crearTarea()">Crear Tarea</button>
+        <a id="ejemploPrevent" href="https://google.com">Irme a otro lado</a>
 
-            <input type="text" id="eliminarTarea">
-            <button onclick="eliminarTarea()">Eliminar tarea</button>
-        </section>
+        <form id="formTareas" class="formTareas" style="display:none;">
+            <section class="formTareas__info">
+                <label for="nombreTarea">
+                    Nombre de la tarea:
+                </label>
+                <input required type="text" name="nombre" id="nombreTarea">
+                
 
-        <table class="tablaTareas">
+                <label for="prioridadTarea">
+                    Prioridad:
+                </label>
+                <select name="prioridad" id="prioridadTarea">
+                    <option selected value="1">Normal</option>
+                    <option value="2">Importante</option>
+                    <option value="3">Urgente</option>
+                </select>            
+
+                <label>
+                    Estado:
+                </label>
+                <select name="estado" id="estadoTarea">
+                    <option selected value="pendiente">Pendiente</option>
+                    <option value="progreso">En progreso</option>
+                    <option value="completa">Completada</option>
+                </select>                                
+            </section>
+
+            <button class="formTareas__submit" onclick="crearTarea()">Crear Tarea</button>
+        </form>
+        
+
+        <table id="laTabla" class="tablaTareas">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Nombre</th>
                     <th>Prioridad</th>
                     <th>Estado</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody id="tablaTareas">

@@ -3,6 +3,8 @@
 //  nombre, prioridad, estado
 // }
 
+let numeroTareas = 0
+
 
 function renderApp() {
     const tablaTareas = document.getElementById("tablaTareas")
@@ -14,15 +16,28 @@ function renderApp() {
         "completa": "Tarea completada"
     }
 
+    const idsParaListeners = []
+
     cargarTareas().forEach((tarea, index) => {
+        const idBorrar = "tarea" + index
+        idsParaListeners.push(idBorrar)
+
         tablaTareas.innerHTML += `
                 <tr>
-                    <td>${index + 1}</td>
                     <td>${tarea.nombre}</td>
                     <td>${prioridades[tarea.prioridad - 1]}</td>
                     <td>${estados[tarea.estado]}</td>
+                    <td><span id=${idBorrar} class='btnBorrar'>&#9760;</span></td>
                 </tr>
         `
+    })
+
+    idsParaListeners.forEach(idParaListener => {
+        document.getElementById(idParaListener).addEventListener("click", (event) => {
+            const index = Number(event.target.id.replace("tarea", ""))
+            console.log("Eliminando la tarea: " + index)
+            eliminarTarea(index)
+        })
     })
 }
 
@@ -66,33 +81,44 @@ function añadirTarea(nombre, prioridad=1, estado="pendiente") {
     guardarTareas(tareas)
 }
 
-function formatearTareas(tareas) {
-    const tareasFormateadas = []
 
-    tareas.forEach((tarea) => {
-        tareasFormateadas.push(`<li>${tarea.nombre}</li>`)
-    })
-
-    return tareasFormateadas.join("")
-}
-
-
-function eliminarTarea() {
-    const userInput = document.getElementById("eliminarTarea")
-    const idTarea = Number(userInput.value) - 1
-    const tareas = cargarTareas()
-    userInput.value = ""
-
-    if (!tareas[idTarea]) {
-        console.warn("Tarea no existe o el id no es válido")
+/**
+ * Elimina una tarea en base a un índice
+ * @param {number} idTarea El índice de la lista de tareas
+ * @returns 
+ */
+function eliminarTarea(idTarea) {
+    if (typeof idTarea !== "number" || idTarea < 0) {
+        console.warn("El id no es válido --- idTareas: " + typeof idTarea)
         return
     }
-    
-    tareas.splice(idTarea, 1)
 
-    guardarTareas(tareas)    
-    renderApp()
+    const tareas = cargarTareas()
+
+    if (tareas[idTarea]) {        
+        tareas.splice(idTarea, 1)
+        guardarTareas(tareas)    
+        renderApp()
+    }
 }
 
-
 renderApp()
+
+
+// LISTENERS PARA FADE-IN-OUT DE LA TABLA DE TAREAS
+// document.getElementById("formTareas").addEventListener("mouseenter", (e) => {
+//     document.getElementById("laTabla").classList.add("oculto")
+// })
+
+// document.getElementById("formTareas").addEventListener("mouseleave", (e) => {
+//     document.getElementById("laTabla").classList.remove("oculto")
+// })
+
+document.getElementById("ejemploPrevent").addEventListener("click", e => {
+//    e.preventDefault()
+    e.target.textContent += "Porfi no te vayas"
+
+    if (e.target.textContent.length >= 100) {
+
+    }
+})
