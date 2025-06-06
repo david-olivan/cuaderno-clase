@@ -2,7 +2,7 @@
  * Guarda una lista de tareas en localStorage
  * @param {{}[]} lista lista de tareas para guardar
  */
-function guardarTareas(lista) {
+function guardarTareasDB(lista) {
     localStorage.setItem("tareas", JSON.stringify(lista))
 }
 
@@ -11,7 +11,7 @@ function guardarTareas(lista) {
  * Devuelve la lista de tareas guardadas en localStorage
  * @returns {{}[]}
  */
-function cargarTareas() {
+function cargarTareasDB() {
     let tareas = localStorage.getItem("tareas")
 
     if (!tareas) {

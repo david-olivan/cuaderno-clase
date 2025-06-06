@@ -3,53 +3,79 @@
 //  nombre, prioridad, estado
 // }
 
-let numeroTareas = 0
+function renderizarTarea(tarea, indice) {
+	const tablaTareas = document.getElementById("tablaTareas");
 
+	const prioridades = ["Normal", "Importante", "SuperUrgente"];
+	const estados = {
+		pendiente: "Pendiente",
+		progreso: "En progreso",
+		completa: "Tarea completada",
+	};
 
-function renderApp() {
-    const tablaTareas = document.getElementById("tablaTareas")
-    tablaTareas.innerHTML = ""
-    const prioridades = ["Normal", "Importante", "SuperUrgente"]
-    const estados = {
-        "pendiente": "Pendiente",
-        "progreso": "En progreso",
-        "completa": "Tarea completada"
-    }
+	// Crearé y rellenaré cosicas del tr
+	const fila = document.createElement("tr");
+	const [col1, col2, col3, col4] = [
+		document.createElement("td"),
+		document.createElement("td"),
+		document.createElement("td"),
+		document.createElement("td"),
+	];
+	const btnBorrar = document.createElement("span");
 
-    const idsParaListeners = []
+	col1.textContent = tarea.nombre;
+	col2.textContent = prioridades[tarea.prioridad - 1];
+	col3.textContent = estados[tarea.estado];
 
-    cargarTareas().forEach((tarea, index) => {
-        const idBorrar = "tarea" + index
-        idsParaListeners.push(idBorrar)
+	btnBorrar.innerHTML = "&#9760;";
+	btnBorrar.classList.add("btnBorrar");
+	btnBorrar.addEventListener("click", () => {
+		eliminarTarea(indice);
+		fila.remove();
+	});
 
-        tablaTareas.innerHTML += `
-                <tr>
-                    <td>${tarea.nombre}</td>
-                    <td>${prioridades[tarea.prioridad - 1]}</td>
-                    <td>${estados[tarea.estado]}</td>
-                    <td><span id=${idBorrar} class='btnBorrar'>&#9760;</span></td>
-                </tr>
-        `
-    })
+	col4.append(btnBorrar);
+	fila.append(col1, col2, col3, col4);
 
-    idsParaListeners.forEach(idParaListener => {
-        document.getElementById(idParaListener).addEventListener("click", (event) => {
-            const index = Number(event.target.id.replace("tarea", ""))
-            console.log("Eliminando la tarea: " + index)
-            eliminarTarea(index)
-        })
-    })
+	// Añado al final de tabla de tareas
+	tablaTareas.append(fila);
 }
 
 /**
  * Hace una llamada a añadirTareas y resetea el valor del input
  */
 function crearTarea() {
-    const userInput = document.getElementById("nombreTarea")
-    añadirTarea(userInput.value)
-    userInput.value = ""
+	const userInput = document.getElementById("nombreTarea");
+	const userPrioridad = document.getElementById("prioridadTarea");
+	const userEstado = document.getElementById("estadoTarea");
 
-    renderApp()
+	const nuevaTarea = {
+		nombre: userInput.value,
+		prioridad: Number(userPrioridad.value),
+		estado: userEstado.value,
+	};
+
+	if (nuevaTarea.nombre.length < 3 || nuevaTarea.nombre.length > 63) {
+		console.warn(
+			"El nombre de la tarea debe tener entre 3 y 63 caracteres",
+		);
+		return;
+	}
+
+	if (![1, 2, 3].includes(nuevaTarea.prioridad)) {
+		console.warn("Prioridad no es válida");
+		return;
+	}
+
+	if (!["pendiente", "progreso", "completa"].includes(nuevaTarea.estado)) {
+		console.warn(
+			"El estado debe ser 'pendiente', 'progreso' o 'completa'",
+		);
+		return;
+	}
+
+	guardarTarea(nuevaTarea);
+	renderizarTarea(nuevaTarea);
 }
 
 /**
@@ -57,53 +83,42 @@ function crearTarea() {
  * @param {string} nombre El nombre de la tarea
  * @param {number} prioridad La prioridad de la tarea
  * @param {string} estado El estado de la tarea
- * @returns 
+ * @returns
  */
-function añadirTarea(nombre, prioridad=1, estado="pendiente") {
-    if (nombre.length < 3 || nombre.length > 63) {
-        console.warn("El nombre de la tarea debe tener entre 3 y 63 caracteres")
-        return
-    }
-
-    if (![1, 2 ,3].includes(prioridad)) {
-        console.warn("Prioridad no es válida")
-        return
-    }
-
-    if (!["pendiente", "progreso", "completa"].includes(estado)) {
-        console.warn("El estado debe ser 'pendiente', 'progreso' o 'completa'")
-        return
-    }
-
-    const tareas = cargarTareas()
-    tareas.push({nombre, prioridad, estado})
-
-    guardarTareas(tareas)
+function guardarTarea(tarea) {
+	const tareas = cargarTareasDB();
+	tareas.push(tarea);
+	guardarTareasDB(tareas);
 }
-
 
 /**
  * Elimina una tarea en base a un índice
  * @param {number} idTarea El índice de la lista de tareas
- * @returns 
+ * @returns
  */
 function eliminarTarea(idTarea) {
-    if (typeof idTarea !== "number" || idTarea < 0) {
-        console.warn("El id no es válido --- idTareas: " + typeof idTarea)
-        return
-    }
+	if (typeof idTarea !== "number" || idTarea < 0) {
+		console.warn("El id no es válido --- idTareas: " + typeof idTarea);
+		return;
+	}
 
-    const tareas = cargarTareas()
+	const tareas = cargarTareasDB();
 
-    if (tareas[idTarea]) {        
-        tareas.splice(idTarea, 1)
-        guardarTareas(tareas)    
-        renderApp()
-    }
+	if (tareas[idTarea]) {
+		tareas.splice(idTarea, 1);
+		guardarTareasDB(tareas);
+	}
 }
 
-renderApp()
+window.onload = () => {
+	document
+		.getElementById("formTareas")
+		.addEventListener("submit", (e) => e.preventDefault());
 
+	cargarTareasDB().forEach((tarea, indice) =>
+		renderizarTarea(tarea, indice),
+	);
+};
 
 // LISTENERS PARA FADE-IN-OUT DE LA TABLA DE TAREAS
 // document.getElementById("formTareas").addEventListener("mouseenter", (e) => {
@@ -113,12 +128,3 @@ renderApp()
 // document.getElementById("formTareas").addEventListener("mouseleave", (e) => {
 //     document.getElementById("laTabla").classList.remove("oculto")
 // })
-
-document.getElementById("ejemploPrevent").addEventListener("click", e => {
-//    e.preventDefault()
-    e.target.textContent += "Porfi no te vayas"
-
-    if (e.target.textContent.length >= 100) {
-
-    }
-})
