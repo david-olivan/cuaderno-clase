@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-2col-2-1 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.tarjeta-producto {
+    margin: 1rem;
+    padding: .65rem;
+    border: 1px solid blue;
+    border-radius: 5px;
+
+    img {
+        width: 100%;
+        height: 75px;
+        object-fit: cover;
+        object-position: top center;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: .25rem;
+    }
+}
+
+#carrito-compra {
+    background-color: violet;
+}
