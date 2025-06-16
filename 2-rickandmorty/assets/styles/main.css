@@ -1,0 +1,12 @@
+.contenidos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    padding: .5rem;
+    gap: .5rem;
+
+    img {
+        width: 125px;
+    }
+}
