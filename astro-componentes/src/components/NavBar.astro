@@ -1,0 +1,42 @@
+---
+const logo = "icon_owl.png";
+const empresa = "David OM";
+const links = [
+	{ text: "Home", href: "/" },
+	{ text: "Contacto", href: "/contacto" },
+	{ text: "Nosotros", href: "/nosotros" },
+];
+---
+
+<nav class="navbar">
+	<div class="navbar-container">
+		<div class="navbar-brand">
+			<img src={logo} alt="" class="brand-logo" />
+			<a href="/" class="brand-text">{empresa}</a>
+		</div>
+
+		<!-- Cosas para el movil -->
+
+		<div class="navbar-menu">
+			<ul class="navbar-nav">
+				{
+					links.map((link) => {
+						return (
+							<li class="navbar-item">
+								<a href={link.href} class="nav-link">
+									{link.text}
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<style>
+	nav {
+		background-color: coral;
+	}
+</style>
