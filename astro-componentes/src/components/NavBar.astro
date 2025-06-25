@@ -1,12 +1,19 @@
 ---
+// Esto es una interfaz de TypeScript donde estamos definiendo qué debe contener el objeto por defecto
+// Props, así como el tipo de datos que tiene que ser cada cosa.
 export interface Props {
 	logo?: string;
 	brand: string;
-	links: Array<{ text: string; href: string }>;
+	links: Array<{ text: string; href: string }>; 	// Aquí estamos diciendo que queremos un Array
+												  	// de objetos, cada objeto con 2 propiedades (text y href)
 }
 
+// Destructurar el objeto Props que nos pasa Astro por defecto a este componente y 
+// sacar las propiedades logo, bran y links si existen.
 const { logo, brand, links } = Astro.props;
 
+// Astro sabe en todo momento cual es la url, con pathname le pedimos que nos de el path
+// de la url, ignorando el servidor, dominio y puerto, así podemos compararlo con los enlaces.
 const currentPath = Astro.url.pathname;
 ---
 
@@ -14,6 +21,9 @@ const currentPath = Astro.url.pathname;
 	<div class="navbar-container">
 		<!-- Imagen de marca, logo y brand -->
 		<div class="navbar-brand">
+			<!-- Si nos han pasado un logo, esta expresión será cierta
+			 	y la imagen se insertará en la barra de navegación, si no, pues no.
+			 -->
 			{logo && <img src={logo} alt="" class="navbar-logo" />}
 			<a href="/" class="brand-text">{brand.toLocaleUpperCase()}</a>
 		</div>
@@ -23,6 +33,12 @@ const currentPath = Astro.url.pathname;
 		<!-- Enlaces del menú de navegación -->
 		<div class="navbar-menu">
 			<ul class="navbar-nav">
+				<!--
+					Utilizamos el Array de links para crear un nuevo Array con map, generando un li
+					con un a por cada objeto de la lista, con su texto y href. Comparamos href con el
+					path actual para determinar si añadir la clase 'active' o no a la lista de clases
+					del enlace y, de esa manera, poder resaltar la página actual en el menú de navegación.
+				 -->
 				{
 					links.map((link) => {
 						return (
