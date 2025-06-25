@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Hola</title>
+	</head>
+	<body>
+		<select name="" id="listado">
+			<option value="hola">Hola</option>
+			<option value="adios">Adios</option>
+			<option value="aqui">Aqui</option>
+		</select>
+	</body>
+
+	<script>
+		document.getElementById("listado").addEventListener("change", (e) => {
+			alert(e.target.value)
+		});
+	</script>
+</html>
