@@ -1,29 +1,36 @@
 ---
-const logo = "icon_owl.png";
-const empresa = "David OM";
-const links = [
-	{ text: "Home", href: "/" },
-	{ text: "Contacto", href: "/contacto" },
-	{ text: "Nosotros", href: "/nosotros" },
-];
+export interface Props {
+	logo?: string;
+	brand: string;
+	links: Array<{ text: string; href: string }>;
+}
+
+const { logo, brand, links } = Astro.props;
+
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="navbar">
 	<div class="navbar-container">
+		<!-- Imagen de marca, logo y brand -->
 		<div class="navbar-brand">
-			<img src={logo} alt="" class="brand-logo" />
-			<a href="/" class="brand-text">{empresa}</a>
+			{logo && <img src={logo} alt="" class="navbar-logo" />}
+			<a href="/" class="brand-text">{brand.toLocaleUpperCase()}</a>
 		</div>
 
 		<!-- Cosas para el movil -->
 
+		<!-- Enlaces del menú de navegación -->
 		<div class="navbar-menu">
 			<ul class="navbar-nav">
 				{
 					links.map((link) => {
 						return (
 							<li class="navbar-item">
-								<a href={link.href} class="nav-link">
+								<a
+									href={link.href}
+									class={`nav-link ${link.href === currentPath ? "active" : ""}`}
+								>
 									{link.text}
 								</a>
 							</li>
@@ -36,7 +43,115 @@ const links = [
 </nav>
 
 <style>
-	nav {
-		background-color: coral;
+	.navbar {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		position: sticky;
+		top: 0;
+		z-index: 1000;
+		backdrop-filter: blur(10px);
 	}
+
+	.navbar-container {
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 4rem;
+	}
+
+	.navbar-brand {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.navbar-logo {
+		height: 2rem;
+		width: auto;
+		border-radius: 4px;
+	}
+
+	.brand-text {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: white;
+		text-decoration: none;
+		letter-spacing: -0.025rem;
+		transition: opacity 0.2s ease;
+	}
+
+	.brand-text:hover {
+		opacity: 0.5;
+	}
+
+	.navbar-menu {
+		display: flex;
+        padding-right: 1.5rem;
+	}
+
+	.navbar-nav {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 2rem;
+	}
+
+	.nav-item {
+		position: relative;
+	}
+
+	.nav-link {
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		font-weight: 500;
+		transition: all 0.2 ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.nav-link:hover {
+		color: white;
+		background: rgba(255, 255, 255, 0.1);
+		transform: translateY(-1px);
+	}
+
+	.nav-link.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.nav-link.active::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 70%;
+        transform: translateX(-50%);
+        height: 2px;
+        background: white;
+        border: 1px;
+	}
+
+	/* La animación guay */
+    .navbar {
+        animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 </style>

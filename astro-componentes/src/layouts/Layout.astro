@@ -19,8 +19,15 @@ const { titulo } = Astro.props;
 		<title>{titulo}</title>
 	</head>
 	<body>
-		<NavBar />
-
+		<NavBar 
+			logo="icon_owl.png", 
+			brand="OMDavid", 
+			links={[
+				{ text: "Home2", href: "/" },
+				{ text: "Contacto2", href: "/contacto" },
+				{ text: "Nosotros2", href: "/nosotros" }
+			]}
+		/>
 		<slot />
 	</body>
 </html>
