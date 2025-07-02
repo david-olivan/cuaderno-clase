@@ -16,8 +16,8 @@ def get_tasks(username: str) -> list:
             return json.load(file)
     except FileNotFoundError:
         with open(f"documents/{username}.json", "w", encoding="utf-8") as file:
-            json.dump([], file)
-            return ["Archivo creado con []"]
+            json.dump([{"name": "Tarea de ejemplo"}], file)
+            return [{"name": "Tarea de ejemplo"}]
 
 
 def set_tasks(username: str, listado_tareas: list[dict]):
