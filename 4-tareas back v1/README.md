@@ -6,8 +6,8 @@
 2. b. gitignore en .venv ✔️
 3. Instalar formateador `pip install black` ✔️
 4. Crear carpetas y main.py ✔️
-5. I/O desde documentos
-6. Schemas para validación con pydantic
-7. Seeder con faker para tener datos que trabajar
+5. I/O desde documentos ✔️
+6. Schemas para validación con pydantic ✔️
+7. Seeder con faker para tener datos que trabajar ✔️
 
 ## Tareas v2: API
