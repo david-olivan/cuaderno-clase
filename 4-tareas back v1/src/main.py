@@ -2,8 +2,7 @@ from tareas.DocumentController import get_tasks, set_tasks
 from tareas.schemas import Tarea
 
 
-def main():
-    ...
+def main(): ...
 
 
 def add_task(username: str, nueva_tarea: Tarea):
