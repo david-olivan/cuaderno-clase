@@ -11,3 +11,6 @@
 7. Seeder con faker para tener datos que trabajar ✔️
 
 ## Tareas v2: API
+1. Instalar fastapi + herramientas cli `pip install fastapi[standard]`
+2. Crear el objeto FastAPI en el código y definir rutas
+3. Lanzar el servidor con `fastapi dev [nombre de tu .py]`
