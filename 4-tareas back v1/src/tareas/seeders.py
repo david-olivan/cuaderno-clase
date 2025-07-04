@@ -17,7 +17,7 @@ def seed_tareas(cantidad: int, username: str):
             name=fk.sentence(6),
             priority=fk.random_int(1, 3),
             project=fk.sentence(3),
-            assigned_to=[fk.name() for _ in range(fk.random_int(1, 5))]
+            assigned_to=[fk.name() for _ in range(fk.random_int(1, 5))],
         )
         listado.append(tarea.model_dump())
 

@@ -1,4 +1,7 @@
 import json
+import time
+from faker import Faker
+from tareas.schemas import Tarea
 
 
 def get_tasks(username: str) -> list:
@@ -12,13 +15,24 @@ def get_tasks(username: str) -> list:
     Returns:
         list: La lista de tareas, o un mensaje en lista de que se ha creado el archivo JSON
     """
+    fk = Faker()
     try:
         with open(f"documents/{username}.json", "r", encoding="utf-8") as file:
             return json.load(file)
     except FileNotFoundError:
         with open(f"documents/{username}.json", "w", encoding="utf-8") as file:
-            json.dump([{"name": "Tarea de ejemplo"}], file)
-            return [{"name": "Tarea de ejemplo"}]
+            tarea = Tarea(
+                id=str(time.time()).replace(".", "")
+                + fk.random_letter()
+                + fk.random_letter()
+                + fk.random_letter(),
+                name=fk.sentence(6),
+                priority=fk.random_int(1, 3),
+                project=fk.sentence(3),
+                assigned_to=[fk.name() for _ in range(fk.random_int(1, 5))],
+            )
+            json.dump(tarea.model_dump(), file)
+            return [tarea.model_dump()]
 
 
 def set_tasks(username: str, listado_tareas: list[dict]):
