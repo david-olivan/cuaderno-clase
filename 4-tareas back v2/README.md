@@ -1,7 +1,7 @@
 # Checklist
 
 ## 1. Estructura del Proyecto
-Crear la estructura del proyecto (src/db, src/utils, tests)
+Crear la estructura del proyecto (api, api/controllers, api/database, api/models, api/routes, tests)
 
 ## 2. Dependencias
 Crear `requirements.txt` y `dev-requirements.txt` con el siguiente contenido:
