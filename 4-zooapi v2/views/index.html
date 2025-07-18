@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas</title>
+</head>
+<body>
+    <h1>Mi APP</h1>
+    <form id="form">
+        <label for="name">Nombre: </label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="edad">Edad: </label>
+        <input type="text" id="edad" name="edad">
+        <br>
+        <input type="submit">
+    </form>
+    <div id="contenidos"></div>
+
+    <script>
+
+        function guardarDatos() {
+            const name = document.getElementById('name').value
+            const edad = Number(document.getElementById('edad').value)
+
+            fetch("http://127.0.0.1:8000/animales", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    edad: edad
+                })
+            })
+        }
+
+        window.onload = async () => {
+            const contenidos = document.getElementById('contenidos')
+            const formulario = document.getElementById('form')
+
+            const data = await fetch('http://127.0.0.1:8000/animales')
+            const response = await data.json()
+
+            response.forEach(animal => {
+                texto = document.createElement("p")
+                texto.textContent = animal.name + " Edad: " + animal.edad
+                contenidos.append(texto)
+            })
+
+            formulario.addEventListener('submit', (e) => {
+                e.preventDefault()
+                guardarDatos()
+            })
+        }
+    </script>
+</body>
+</html>
