@@ -20,6 +20,6 @@ MONGO_URL=mongodb://localhost:27017
 
 - Importaciones
 - URL de conexión
-- Modelo de datos con Document, y class Settings con el nombre de conexión
+- Modelo de datos con Document, y class Settings con el nombre de colección
 - init (cliente, database, init_beanie con modelos)
 - lifespan (asynccontextmanager) para integrar con FastAPI
