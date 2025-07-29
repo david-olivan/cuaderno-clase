@@ -1,8 +1,8 @@
 import asyncio
 from faker import Faker
 from motor.motor_asyncio import AsyncIOMotorClient
-from beanie import Document, init_beanie
-from typing import Optional
+from beanie import Document, init_beanie, Indexed
+from typing import Optional, Annotated
 from decouple import config
 
 
@@ -24,13 +24,21 @@ class Curso(Document):
         name = "cursos"
 
 
+class API_Keys(Document):
+    api_key: str
+    role: str
+
+    class Settings:
+        name = "apikeys"
+
+
 MONGO_URL = str(config("MONGO_URL"))
 
 
 async def init_db():
     client = AsyncIOMotorClient(MONGO_URL)
     database = client["schoolapi"]
-    await init_beanie(database=database, document_models=[Estudiante, Curso])  # type: ignore
+    await init_beanie(database=database, document_models=[Estudiante, Curso, API_Keys])  # type: ignore
 
 
 async def seed_everything():
