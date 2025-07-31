@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, status, Depends
-from .database import init_db, Estudiante, Curso
-from beanie import PydanticObjectId
+from .database import init_db, Curso
 from pydantic import BaseModel
 from typing import Optional
 

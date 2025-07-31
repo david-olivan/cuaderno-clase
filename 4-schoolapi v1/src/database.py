@@ -1,8 +1,8 @@
 import asyncio
 from faker import Faker
 from motor.motor_asyncio import AsyncIOMotorClient
-from beanie import Document, init_beanie, Indexed
-from typing import Optional, Annotated
+from beanie import Document, init_beanie
+from typing import Optional
 from decouple import config
 
 
