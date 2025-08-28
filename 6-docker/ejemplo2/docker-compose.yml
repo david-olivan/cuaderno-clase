@@ -1,0 +1,5 @@
+services:
+  patata:
+    build: .
+    ports:
+      - "3000:4173"
