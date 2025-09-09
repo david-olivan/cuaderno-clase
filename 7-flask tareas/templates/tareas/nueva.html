@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Nueva Tarea - Flask Tareas
+{% endblock %}
+
+{% block content %}
+<div class="tareas container">
+    <div class="header">
+        <h1>Nueva Tarea</h1>
+        <a href="{{ url_for('inicio') }}">Volver atrás</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="formulario-tarea">
+        <form method="post">
+            <div class="form-group">
+                <label for="titulo">Título de la tarea: </label>
+                <input type="text" id="titulo" name="titulo" required autofocus>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn">Guardar Tarea</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
