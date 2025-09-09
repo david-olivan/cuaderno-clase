@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Saludar
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre">
+        <input type="submit">
+    </form>
+{% endblock %}
