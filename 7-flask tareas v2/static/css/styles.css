@@ -1,0 +1,339 @@
+body {
+    background-color: #333;
+    color: #dfdfdf;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #222;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar-auth {
+    margin-left: auto;
+}
+
+.nav-button {
+    background-color: #00838f;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button:hover {
+    background-color: #006064;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button.logout {
+    background-color: #666;
+}
+
+.nav-button.logout:hover {
+    background-color: #555;
+}
+
+a {
+    color: #dfdfdf;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header a {
+    background-color: #2196F3;  /* Azul para Nueva Tarea */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.header a:hover {
+    background-color: #1976D2;
+    color: white;
+}
+
+.alert {
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid transparent;
+}
+
+.alert.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.alert-success {
+    background-color: #2e7d32;
+    color: #e8f5e9;
+    border-color: #1b5e20;
+    box-shadow: 0 2px 4px rgba(46, 125, 50, 0.2);
+}
+
+.alert-error {
+    background-color: #c62828;
+    color: #ffebee;
+    border-color: #b71c1c;
+    box-shadow: 0 2px 4px rgba(198, 40, 40, 0.2);
+}
+
+.alert-info {
+    background-color: #006064;
+    color: #e0f7fa;
+    border-color: #00838f;
+    box-shadow: 0 2px 4px rgba(0, 96, 100, 0.2);
+}
+
+.tareas-lista {
+    background-color: #444;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.tarea-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.tarea-item .acciones {
+    display: flex;
+    gap: 10px;  /* Espacio entre botones */
+}
+
+.tarea-item.completada {
+    background-color: #3a3a3a;
+}
+
+.tarea-item.completada .titulo {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.9em;
+}
+
+/* Botón para Completar tarea */
+.tarea-item:not(.completada) .btn:not(.btn-danger) {
+    background-color: #4CAF50;  /* Verde */
+}
+
+.tarea-item:not(.completada) .btn:not(.btn-danger):hover {
+    background-color: #45a049;
+}
+
+/* Botón para Marcar como pendiente */
+.tarea-item.completada .btn:not(.btn-danger) {
+    background-color: #FF9800;  /* Naranja */
+}
+
+.tarea-item.completada .btn:not(.btn-danger):hover {
+    background-color: #F57C00;
+}
+
+/* Botón de eliminar */
+.btn.btn-danger {
+    background-color: #dc3545 !important;
+    transition: background-color 0.3s ease;
+}
+
+.btn.btn-danger:hover {
+    background-color: #c82333 !important;
+}
+
+.no-tareas {
+    text-align: center;
+    padding: 30px;
+    color: #888;
+}
+
+.no-tareas a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.no-tareas a:hover {
+    color: #45a049;
+}
+
+/* Estilos para el formulario */
+.formulario-tarea {
+    background-color: #444;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #dfdfdf;
+    font-size: 1em;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.form-actions {
+    margin-top: 30px;
+}
+
+.form-actions .btn {
+    background-color: #2196F3;
+    font-weight: bold;
+}
+
+/* Login Form Styles */
+.login-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #555;
+    color: #ffffff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 15px 0;
+}
+
+.remember-me input {
+    width: auto;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #00838f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+    background-color: #006064;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #2196F3;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.form-actions .btn:hover {
+    background-color: #1976D2;
+}
