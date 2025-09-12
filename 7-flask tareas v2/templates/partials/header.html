@@ -1,4 +1,10 @@
-<nav>
-    <h2><a href="{{ url_for('inicio') }}">Flask Tareas</a></h2>
-    <a href="{{ url_for('nueva_tarea') }}">Nueva tarea</a>
+<nav class="navbar">
+    <a href="{{ url_for('inicio') }}" class="navbar-brand">Flask Tareas</a>
+    <div class="navbar-auth">
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}" class="nav-button logout">Cerrar Sesión</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="nav-button">Iniciar Sesión</a>
+        {% endif %}
+    </div>
 </nav>

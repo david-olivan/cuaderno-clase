@@ -7,7 +7,7 @@ Mis tareas - Flask Tareas
 {% block content %}
 <div class="tareas container">
     <div class="header">
-        <h1>Mis Tareas</h1>
+        <h1>Las tareas de {{ current_user.username }}</h1>
         <a href="{{ url_for('nueva_tarea') }}">Nueva Tarea</a>
     </div>
 
