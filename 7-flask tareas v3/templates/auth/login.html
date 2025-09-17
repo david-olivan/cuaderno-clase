@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2 class="login-title">Iniciar Sesión</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.username.label }}
+            {{ form.username }}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <div class="alert alert-error">
+                        <small>{{ error }}</small>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password }}
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <div class="alert alert-error">
+                        <small>{{ error }}</small>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="remember-me">
+            {{ form.remember }}
+            {{ form.remember.label }}
+        </div>
+
+        {{ form.submit(class="submit-btn") }}
+
+        <div class="register-link">
+            <p>¿No tienes cuenta? <a href="">Regístrate aquí</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

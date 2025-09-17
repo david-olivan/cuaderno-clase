@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Nueva Tarea - Flask Tareas
+{% endblock %}
+
+{% block content %}
+<div class="tareas container">
+    <div class="header">
+        <h1>Nueva Tarea</h1>
+        <a href="{{ url_for('inicio') }}">Volver atrás</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="formulario-tarea">
+        <form method="post">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <!--
+                <label for="titulo">Título de la tarea: </label>
+                <input type="text" id="titulo" name="titulo" required autofocus>
+                -->
+                {{ form.titulo_tarea.label }}
+                {{ form.titulo_tarea }}
+                {% if form.titulo_tarea.errors %}
+                    {% for error in form.titulo_tarea.errors %}
+                        <div class="alert alert-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.prioridad.label }}
+                {{ form.prioridad }}
+                {% if form.prioridad.errors %}
+                    {% for error in form.prioridad.errors %}
+                        <div class="alert alert-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <!--<button type="submit" class="btn">Guardar Tarea</button>-->
+                {{ form.submit(class="btn") }}
+            </div>           
+
+        </form>
+    </div>
+</div>
+{% endblock %}

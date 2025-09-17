@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Mis tareas - Flask Tareas
+{% endblock %}
+
+{% block content %}
+<div class="tareas container">
+    <div class="header">
+        <h1>Las tareas de {{ current_user.username }}</h1>
+        <a href="{{ url_for('nueva_tarea') }}">Nueva Tarea</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="tareas-lista">
+        {% for tarea in tareas %}
+            <div class="tarea-item {% if tarea.completada %}completada{% endif %}">
+                <span class="titulo">{{ tarea.titulo }}</span>
+                <div class="acciones">
+                    <a href="{{ url_for('completar_tarea', id=tarea.id) }}" class="btn btn-sm">
+                        {% if tarea.completada %}
+                            Marcar Pendiente
+                        {% else %}
+                            Completar
+                        {% endif %}
+                    </a>
+                    <a href="{{ url_for('eliminar_tarea', id=tarea.id) }}" class="btn btn-sm btn-danger">
+                        Eliminar
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="no-tareas">
+                <p>No hay tareas.</p>
+                <a href="{{ url_for('nueva_tarea') }}">¿Quieres crear una nueva tarea?</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
