@@ -3,7 +3,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 
 from forms import NuevaTarea, LoginForm
-from models import UserLogin, db, Tareas
+from models import UserLogin, db, Tareas, User
 
 app = Flask(__name__)
 app.secret_key = "clave_secreta"
@@ -51,10 +51,14 @@ def login():
         password = form.password.data
         remember = form.remember.data
 
-        user_data = UserLogin.get_by_username(username)
+        user_data = User.query.filter(User.username.contains(username)).first()
         if user_data and user_data.check_password(password):
-            login_user(user_data, remember=remember)
-            flash(f'Bienvenido a tus tareas, {user_data.username.capitalize()}', 'info')
+            usuario_actual = UserLogin(
+                id=user_data.id,
+                username=user_data.username
+            )
+            login_user(usuario_actual, remember=remember)
+            flash(f'Bienvenido a tus tareas, {usuario_actual.username.capitalize()}', 'info')
 
             return redirect(url_for('inicio'))
         else:
@@ -62,6 +66,37 @@ def login():
 
     return render_template('auth/login.html', form=form)
 
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if current_user.is_authenticated:
+        flash("Ya estás logueado", 'info')
+        return redirect(url_for('inicio'))
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+
+        if User.query.filter(User.username.contains(username)).first():
+            flash("El usuario ya existe, elige otro nombre", "error")
+            return render_template('auth/register.html', form=form)
+
+        nuevo_usuario = User(
+            username=username, # type: ignore
+            password=User.set_password(password) # type: ignore
+        )
+
+        print(nuevo_usuario)
+
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+
+        flash("Usuario creado correctamente", "success")
+        return redirect(url_for('login'))
+    
+    return render_template('auth/register.html', form=form)
 
 @app.route("/logout")
 def logout():

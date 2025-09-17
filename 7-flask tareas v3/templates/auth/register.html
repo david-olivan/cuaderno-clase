@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Registro{% endblock %}
 
 {% block content %}
 <div class="login-container">
-    <h2 class="login-title">Iniciar Sesión</h2>
+    <h2 class="login-title">Regístrate</h2>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -43,15 +43,12 @@
             {% endif %}
         </div>
 
-        <div class="remember-me">
-            {{ form.remember }}
-            {{ form.remember.label }}
-        </div>
 
         {{ form.submit(class="submit-btn") }}
 
+
         <div class="register-link">
-            <p>¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+            <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Login</a></p>
         </div>
     </form>
 </div>

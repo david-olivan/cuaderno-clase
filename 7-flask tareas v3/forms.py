@@ -37,6 +37,6 @@ class LoginForm(FlaskForm):
         validators=[DataRequired(message="La contraseña es obligatoria")]
     )
 
-    remember = BooleanField("Recordarme")
+    remember = BooleanField("Recordarme", default=False)
 
     submit = SubmitField("Login")
